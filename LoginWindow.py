@@ -6,22 +6,22 @@ from UserBLL import *
 from ViewDriversAssignedBookings import *
 
 
+# Class declaration for login window
 class Login:
 
     def __init__(self):
+        # Assigning title, width height and setting window to middle of the screen
         self.loginWindow = Tk()
         self.loginWindow.title("Login")
         windowWidth = 300
         windowHeight = 300
-
         screenWidth = self.loginWindow.winfo_screenwidth()
         screenHeight = self.loginWindow.winfo_screenheight()
-
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
-
         self.loginWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
+        # Widgets placement in the designed window
         # Label and textfield placement for email
         self.lblEmail = Label(self.loginWindow, text="Please enter your email *")
         self.lblEmail.pack()
@@ -47,6 +47,8 @@ class Login:
 
         self.loginWindow.mainloop()
 
+    # function to get user input and validate user input
+    # Directs user to their specific window based on their usertype after successfull login
     def loginUser(self):
         email = self.txtEmail.get()
         password = self.txtPassword.get()

@@ -1,24 +1,25 @@
+# importing modules
 from tkinter import *
 from ViewAdminBookings import *
 from ViewAdminAssignedBookings import *
 
-
+# Class declaration for admin dashboard
 class AdminDashboard:
     def __init__(self, userData):
+
+        # Assigning title, width height and setting window to middle of the screen
         self.userData = userData
         self.adminDashboardWindow = Tk()
-        self.adminDashboardWindow.title("User Dashboard")
+        self.adminDashboardWindow.title("Admin Dashboard")
         windowWidth = 450
         windowHeight = 350
-
         screenWidth = self.adminDashboardWindow.winfo_screenwidth()
         screenHeight = self.adminDashboardWindow.winfo_screenheight()
-
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
-
         self.adminDashboardWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
+        # Widgets placement in the designed window
         lblHeading = Label(self.adminDashboardWindow, text="Hello " + self.userData[0][1], font=("", 12))
         lblHeading.place(x=55, y=0)
 
@@ -34,10 +35,12 @@ class AdminDashboard:
 
         self.adminDashboardWindow.mainloop()
 
+    # function for opening bookings window
     def openViewBookings(self):
         self.adminDashboardWindow.iconify()
         vad = ViewAdminBookings(self.userData)
 
+    # function for opening assigned bookings
     def openViewAssignedBookings(self):
         self.adminDashboardWindow.iconify()
         vad = ViewAdminAssignedBookings(self.userData)

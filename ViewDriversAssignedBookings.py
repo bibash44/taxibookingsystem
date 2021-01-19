@@ -7,13 +7,12 @@ from UserBLL import *
 from AssignedBookingBLL import *
 
 
+# class declaration for viewing assigned bookings for drivers
 class ViewDriversAssignedBookings:
     def __init__(self, userData):
         self.userData = userData
-
         self.ViewAssignedBookings = Tk()
         self.ViewAssignedBookings.title("View own bookings bookings")
-
         windowWidth = 1200
         windowHeight = 500
         screenWidth = self.ViewAssignedBookings.winfo_screenwidth()
@@ -21,6 +20,7 @@ class ViewDriversAssignedBookings:
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
 
+        # Widgets placement in the designed window
         self.ViewAssignedBookings.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
         self.lblHeading = Label(self.ViewAssignedBookings,
@@ -55,6 +55,7 @@ class ViewDriversAssignedBookings:
         self.fetchBookingData()
         self.ViewAssignedBookings.mainloop()
 
+    # Function to fetch only logged in driver assigned bookings data
     def fetchBookingData(self):
         assignedBookingsData = AssignedBookingBLL().getDriversBoookings(str(self.userData[0][0]))
         if assignedBookingsData == 0:

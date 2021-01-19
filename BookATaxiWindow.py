@@ -7,21 +7,23 @@ from BookingBLL import *
 from UserDashboard import *
 
 
+# class declaration for booking taxi for user
 class UserBookingWindow:
     def __init__(self, userData):
+
+        # Assigning title, width height and setting window to middle of the screen
         self.userData = userData
         self.bookingWindow = Tk()
-        self.bookingWindow.title("Make booking")
-
+        self.bookingWindow.title("Book a taxi")
         windowWidth = 500
         windowHeight = 550
         screenWidth = self.bookingWindow.winfo_screenwidth()
         screenHeight = self.bookingWindow.winfo_screenheight()
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
-
         self.bookingWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
+        # Widgets placement in the designed window
         lblHeading = Label(self.bookingWindow,
                            text="Hello " + self.userData[0][1] + " please enter booking details", font=("", 10))
         lblHeading.place(x=155, y=0)
@@ -42,16 +44,16 @@ class UserBookingWindow:
         self.txtTime = Entry(self.bookingWindow, width=40, border=3)
         self.txtTime.place(x=155, y=270)
 
-        # Time label and textfield
+        # pickup label
         self.lblPickUpLocation = Label(self.bookingWindow, text="Enter pickup location")
         self.lblPickUpLocation.place(x=155, y=310)
 
         self.txtPickUpLocation = Entry(self.bookingWindow, width=40, border=3)
         self.txtPickUpLocation.place(x=155, y=330)
 
-        # Time label and textfield
-        self.lblPickUpLocation = Label(self.bookingWindow, text="Enter drop off location")
-        self.lblPickUpLocation.place(x=155, y=370)
+        # dropoff label field
+        self.lblDropOffLocation = Label(self.bookingWindow, text="Enter drop off location")
+        self.lblDropOffLocation.place(x=155, y=370)
 
         self.txtDropOffLocation = Entry(self.bookingWindow, width=40, border=3)
         self.txtDropOffLocation.place(x=155, y=400)
@@ -62,11 +64,15 @@ class UserBookingWindow:
 
         self.bookingWindow.mainloop()
 
+    # function to make the booking
     def makeBooking(self):
+        # variable declaration to store user provided inputs
         date = self.cal.get_date()
         time = self.txtTime.get()
         pickup_location = self.txtPickUpLocation.get()
         dropoff_location = self.txtDropOffLocation.get()
+
+        # Validation for checking user inputs and showing errors if the validation fails
 
         if date == "":
             self.validationError("Please select pickup date")
@@ -90,6 +96,7 @@ class UserBookingWindow:
                 self.txtTime.delete(0, END)
                 self.txtPickUpLocation.delete(0, END)
 
+    # Static Function that returns error message box
     @staticmethod
     def validationError(ValidationMessage):
         return messagebox.showerror("Validation error", ValidationMessage)

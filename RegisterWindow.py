@@ -5,22 +5,21 @@ import re
 from UserBLL import *
 
 
+# Class declaration for register window
 class Register:
     def __init__(self):
+        # Assigning title, width height and setting window to middle of the screen
         self.registerWindow = Tk()
         self.registerWindow.title("Register user")
-
         windowWidth = 750
         windowHeight = 750
-
         screenWidth = self.registerWindow.winfo_screenwidth()
         screenHeight = self.registerWindow.winfo_screenheight()
-
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
-
         self.registerWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
+        # Widgets placement in the designed window
         # Label and text field placement for name
         self.lblName = Label(self.registerWindow, text="Please enter your name *")
         self.lblName.pack()

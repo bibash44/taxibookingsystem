@@ -5,13 +5,12 @@ from BookingBLL import *
 from tkinter import ttk
 
 
+# class declaration for view  bookings for user
 class ViewBookings:
     def __init__(self, userData):
         self.userData = userData
-
         self.ViewBookingWindow = Tk()
         self.ViewBookingWindow.title("View bookings")
-
         windowWidth = 830
         windowHeight = 500
         screenWidth = self.ViewBookingWindow.winfo_screenwidth()
@@ -19,6 +18,7 @@ class ViewBookings:
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
 
+        # Widgets placement in the designed window
         self.ViewBookingWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
         self.lblHeading = Label(self.ViewBookingWindow,
@@ -59,6 +59,7 @@ class ViewBookings:
 
         self.ViewBookingWindow.mainloop()
 
+    # function to fetch bookings data based on user id
     def fetchBookingData(self):
         bookingDatas = BookingBLL().fetchBookingsdata(self.userData)
         if bookingDatas == 0:
@@ -67,8 +68,8 @@ class ViewBookings:
             for data in bookingDatas:
                 self.bookingTable.insert('', "end", values=(data[0], data[2], data[3], data[4], data[5], data[6]))
 
+    # Show selected value from the table in the label
     def selectItem(self, event):
-
         getValueFromTable = self.getValueFromTable()
         if getValueFromTable == "" or getValueFromTable is None:
             return
@@ -81,6 +82,7 @@ class ViewBookings:
                      ",  Pick Up address = " + str(getValueFromTable[3]) +
                      ",  Drop off address = " + str(getValueFromTable[4]))
 
+    # Function to cancel the booking by user
     def cancelBooking(self):
         valueToCancel = self.getValueFromTable()
         if valueToCancel == "" or valueToCancel is None:
@@ -97,6 +99,7 @@ class ViewBookings:
                 else:
                     messagebox.showerror("Error ", "Failed to cancel booking ")
 
+    # Get selected value from the table
     def getValueFromTable(self):
         focusedItemInTable = self.bookingTable.focus()
         currentItemInTable = self.bookingTable.item(focusedItemInTable)

@@ -7,22 +7,21 @@ from UserBLL import *
 from AssignedBookingBLL import *
 
 
+# Class declaration for assigned bookings window for admin
 class ViewAdminAssignedBookings:
     def __init__(self, userData):
         self.userData = userData
-
         self.ViewAssignedBookings = Tk()
         self.ViewAssignedBookings.title("View Assigned bookings")
-
         windowWidth = 1200
         windowHeight = 500
         screenWidth = self.ViewAssignedBookings.winfo_screenwidth()
         screenHeight = self.ViewAssignedBookings.winfo_screenheight()
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
-
         self.ViewAssignedBookings.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
+        # Widgets placement in the designed window
         self.lblHeading = Label(self.ViewAssignedBookings,
                                 text="Total assigned bookings", font=("", 10))
         self.lblHeading.place(x=650, y=10)
@@ -55,6 +54,7 @@ class ViewAdminAssignedBookings:
         self.fetchBookingData()
         self.ViewAssignedBookings.mainloop()
 
+    # FUnction to Fetch assigned bookings data
     def fetchBookingData(self):
         assignedBookingsData = AssignedBookingBLL().getAssignDrivers()
         print(assignedBookingsData)

@@ -7,13 +7,12 @@ from UserBLL import *
 from AssignedBookingBLL import *
 
 
+# Class declaration for viewing bookings window for admin
 class ViewAdminBookings:
     def __init__(self, userData):
         self.userData = userData
-
         self.ViewBookingWindow = Tk()
         self.ViewBookingWindow.title("View bookings")
-
         windowWidth = 1300
         windowHeight = 700
         screenWidth = self.ViewBookingWindow.winfo_screenwidth()
@@ -21,6 +20,7 @@ class ViewAdminBookings:
         x = (screenWidth / 2) - (windowWidth / 2)
         y = (screenHeight / 2) - (windowHeight / 2)
 
+        # Widgets placement in the designed window
         self.ViewBookingWindow.geometry("%dx%d+%d+%d" % (windowWidth, windowHeight, x, y))
 
         self.lblHeading = Label(self.ViewBookingWindow,
