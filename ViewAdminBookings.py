@@ -188,8 +188,7 @@ class ViewAdminBookings:
                 driverid = str(driverToAssign[0])
 
                 doAssign = messagebox.askquestion("Confirm ",
-                                                  "Are you sure to assign driver " + driverToAssign[1] + " to user " +
-                                                  bookingToAssign[5])
+                                                  "Are you sure to assign the driver ")
                 if doAssign == 'yes':
                     assigndriverToBooking = AssignedBookingBLL().assignDriver(driverid, bookingid)
                     if assigndriverToBooking == 0:
